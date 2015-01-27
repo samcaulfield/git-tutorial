@@ -1,0 +1,379 @@
+\documentclass{beamer}
+\usepackage{listings}
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+\usepackage[official]{eurosym}
+% Remove the navigation buttons at the bottom right of each slide.
+\setbeamertemplate{navigation symbols}{}
+% Set bulletpoints to circles.
+\setbeamertemplate{itemize items}[circle]
+
+
+\title{Git Tutorial}
+\author{Netsoc}
+% Remove the date.
+\date{}
+\begin{document}
+\frame{\titlepage}
+
+
+\section{Netsoc}
+\begin{frame}
+\frametitle{Netsoc Services}
+Netsoc offers useful services to its members such as
+\begin{itemize}
+	\pause
+	\item our library,
+	\pause
+	\item IRC,
+	\pause
+	\item Netroom,
+	\pause
+	\item tutorials (e.g. admin, programming, web-dev),
+	\pause
+	\item and web hosting.
+\end{itemize}
+\pause
+
+The subscription fee is only \EUR{}2.
+
+\pause
+
+Our weekly meetings are on Wednesdays at 1pm in room 5033 (Arts Block).
+\end{frame}
+
+
+\section{Goals of this tutorial}
+\begin{frame}
+\frametitle{Goals of this tutorial}
+\begin{itemize}
+\pause
+\item Introduce Git.
+\pause
+\item Teach you the fundamentals of Git.
+\pause
+\item Slides are at http://sc.netsoc.ie/git-tutorial.pdf
+\end{itemize}
+\end{frame}
+
+
+\section{What is Git?}
+\begin{frame}
+\frametitle{What is Git?}
+\begin{itemize}
+\pause
+\item Git is a free and open-source distributed version control system.
+\pause
+\item Git is fast, lightweight, easy to learn and supports multiple workflows.
+\pause
+\item Git is used in Facebook, Google, Microsoft, Twitter, LinkedIn, and more
+(if you care).
+\end{itemize}
+\end{frame}
+
+
+\section{Getting Git}
+\begin{frame}
+\frametitle{Getting Git}
+\begin{itemize}
+\pause
+\item Linux: you probably know already
+\pause
+\item Windows and Mac: git-scm.com or xcode or something
+\end{itemize}
+\end{frame}
+
+
+\section{Configuring Git}
+\begin{frame}
+\frametitle{Configuring Git}
+\begin{itemize}
+\pause
+\item Tell Git who you are (used for commit messages):
+\pause
+\item git config -{}-global user.name "Sam Caulfield"
+\pause
+\item git config -{}-global user.email "sam@samcaulfield.com"
+\pause
+\item git config -{}-global core.editor \$EDITOR
+\pause
+\item git config -{}-list
+\end{itemize}
+\end{frame}
+
+
+\section{Creating, Cloning, Deleting}
+\begin{frame}
+\frametitle{Creating, Cloning, Deleting}
+\begin{itemize}
+\pause
+\item Creating a repository:
+	\begin{itemize}
+	\pause
+	\item mkdir MyGreatProject
+	\pause
+	\item cd MyGreatProject
+	\pause
+	\item git init
+	\end{itemize}
+\pause
+\item Cloning a repository:
+	\begin{itemize}
+	\pause
+	\item git clone urlOfTheProject
+	\end{itemize}
+\pause
+\item Deleting a repository:
+	\begin{itemize}
+	\pause
+	\item Simply delete the .git directory in the repository directory.
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\section{Adding and Removing}
+\begin{frame}
+\frametitle{Adding and Removing}
+\begin{itemize}
+\pause
+\item View the status of the repository:
+	\begin{itemize}
+	\pause
+	\item git status
+	\end{itemize}
+\pause
+\item Files can be tracked or untracked. Tracked files can modified or
+unmodified.
+	\begin{itemize}
+	\pause
+	\item Tracked: Already committed.
+	\pause
+	\item Untracked: Not committed.
+	\pause
+	\item Modified: Has uncommitted changes.
+	\end{itemize}
+\pause
+\item To add (stage) some changes:
+	\begin{itemize}
+	\pause
+	\item Make your changes
+	\pause
+	\item git add changedFile.java
+	\end{itemize}
+\pause
+\item Note that staged changes haven't been sent anywhere yet! Use git rm
+stagedFile to unstage.
+\pause
+\item Staged files exist in the Staging Area, the place where you get everything
+ready for a commit. Commits are what actually change the repository! Staging and
+unstaging files is easy, commits, not so much!
+\end{itemize}
+\end{frame}
+
+
+\section{Committing}
+\begin{frame}
+\frametitle{Committing}
+\begin{itemize}
+\pause
+\item Once the changes you want to commit have been "git add"ed, run git commit.
+You will be prompted for a commit message. Some of your details from the
+configuration step will be shown along with your message.
+\pause
+\item To see the commit messages:
+	\begin{itemize}
+	\pause
+	\item git log
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\section{Pulling and Pushing}
+\begin{frame}
+\frametitle{Pulling and Pushing}
+\begin{itemize}
+\pause
+\item Just running git commit updates your local repository.
+\pause
+\item Commits can be sent to and received from other machines, e.g. a central
+code server.
+\pause
+\item Makes sense to run a git pull before making your changes so you're working
+with the latest code on the server.
+\pause
+\item git pull origin master
+	\begin{itemize}
+	\pause
+	\item origin is just the memorable name we have given to the remote
+machine (which could be an IP - hard to remember)
+	\pause
+	\item master is the branch we are pulling from the remote machine - more
+on this later
+	\end{itemize}
+\pause
+\item git push origin master: same deal
+\pause
+\item If all goes well these operations won't produce conflicts, but they may.
+More on this later.
+\end{itemize}
+\end{frame}
+
+
+\section{Remotes}
+\begin{frame}
+\frametitle{Remotes}
+\begin{itemize}
+\pause
+\item In Git, other computers are called Remotes.
+\pause
+\item To push and pull to and from other machines, you have to tell Git where
+they are.
+\pause
+\item When you clone a repository, the machine you cloned from is set up as a
+remote called "origin" automatically
+\pause
+\item Editing remotes:
+\pause
+	\begin{itemize}
+	\item git remote add conorsFork urlOfTheFork
+	\pause
+	\item git remote remove conorsFork
+	\end{itemize}
+\pause
+\item List remotes:
+	\begin{itemize}
+	\pause
+	\item git remote -v
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\begin{itemize}
+\pause
+\item Those commands will probably do 90\% of what you need most of the time.
+\pause
+\item Sometimes, exceptional things might happen that require a few more commands:
+\pause
+	\begin{itemize}
+	\item Merge Conflicts
+	\pause
+	\item Stashing
+	\pause
+	\item Branching
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\section{Merge Conflicts}
+\begin{frame}
+\frametitle{Merge Conflicts}
+\begin{itemize}
+\pause
+\item Sounds scary, but really isn't
+\pause
+\item The only scary thing is that two people in different places are working
+on the exact same lines of your project..
+\pause
+\item Git can detect the conflict, but will ask you to resolve it
+\pause
+\item Git adds "conflict markers" to the file to show you where the conflict
+happened
+\end{itemize}
+\end{frame}
+
+
+\section{Stashing}
+\begin{frame}
+\frametitle{Stashing}
+\begin{itemize}
+\pause
+\item You're working on a cool new feature.. untracked/modified/staged files
+everywhere..
+\pause
+\item Someone tells you about a bug that needs to be fixed ASAP
+\pause
+\item Where to put all the changed files?
+\pause
+\item You could copy them to a different directory, fix the bug and then copy
+them back..
+\pause
+\item But why not let Git do this for you?
+\pause
+\item Git can "stash" the files until you need them again.
+\pause
+\item When Git does a stash, it puts your changes away safely, you're left with
+a clean working directory, can make changes, then unstash the files.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Stashing}
+\begin{itemize}
+\pause
+\item The data structure that contains your stashes is actually a stack
+\pause
+\item So you could be working on fixing a bug when a higher priority bug report
+comes in, stash those changes, do the higher priority one, unstash, and so on.
+\pause
+\item Three commands and you're good to go:
+	\begin{itemize}
+	\pause
+	\item git stash
+	\pause
+	\item git stash pop
+	\pause
+	\item git stash list
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\section{Branches}
+\begin{frame}
+\frametitle{Branches}
+\begin{itemize}
+\pause
+\item Interesting reading: http://nvie.com/posts/a-successful-git-branching-model/
+\pause
+\item You can probably just use stashing to work on one thing at a time, with
+the occasional higher priority task coming in.
+\pause
+\item But for doing multiple things at once, consider branching
+\pause
+\item It's simple, you branch off the main branch, work on something, then merge
+it back into the main branch when you're done.
+\pause
+\item git checkout -b coolFeature
+\pause
+\item You can do commits etc. on this new branch.
+\pause
+\item git branch master
+\pause
+\item git merge coolFeature
+	\begin{itemize}
+	\pause
+	\item merges the coolFeature branch into the current branch
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\section{Demonstration}
+\begin{frame}
+\frametitle{Demnstration}
+\end{frame}
+
+
+\end{document}
+
