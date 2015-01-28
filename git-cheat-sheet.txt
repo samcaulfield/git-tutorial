@@ -1,0 +1,74 @@
+Git Cheat Sheet
+
+Repository Manipulation:
+  /* Clone an already existing Git repository to the current directory: */
+  git clone https://www.github.com/samcaulfield/git-tutorial.git
+
+  /* Initialise a new Git repository in the current directory: */
+  git init
+
+  /* Delete the Git repository in the current directory: */
+  rm .git
+
+The following commands will only work in a Git repository:
+
+Staging:
+  /* View staging information: */
+  git status
+
+  /* Stage a file: */
+  git add some_file.c
+
+  /* Unstage a file: */
+  git rm some_file.c
+
+Committing:
+  /* Commit staged files: */
+  git commit
+
+  /* Reset the repository to the penultimate commit: */
+  git reset --hard HEAD~1
+
+Remotes:
+  /* List remotes: */
+  git remote -v
+
+  /* Add a remote: */
+  git remote add remote_name remote_url
+
+  /* Remove a remote: */
+  git remote remove remote_name
+
+Pulling and Pushing:
+  /* Get the latest repository state from the "master" branch of the "origin"
+   * remote, and attempt a merge: */
+  git pull origin master
+
+  /* Push local commits to the "master" branch of the "origin" remote: */
+  git push origin master
+
+Stashing:
+  /* Stash the changes in the working directory: */
+  git stash
+
+  /* Pop a stash from the stash stack, and apply the changes to the working
+   * directory: */
+  git stash pop
+
+  /* List the stashes in the stash stack: */
+  git stash list
+
+Branching:
+  /* Create a new branch, bringing across local changes: */
+  git checkout -b branch_name
+
+  /* Merge a branch into the current branch: */
+  git merge branch_name
+
+Miscellaneous:
+  /* Remove local changes: */
+  git checkout .
+
+  /* Show changes between the working directory and the index: */
+  git diff
+
