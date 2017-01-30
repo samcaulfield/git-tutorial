@@ -1,0 +1,52 @@
+git overview
+	- what is it
+	- brief history
+	- advantages & princples
+		- decentralised
+		- history is immutable
+	- how to get it
+
+getting repositories
+
+local changes
+
+sync changes
+
+merge conflicts
+
+workflow stuff
+
+practical demo
+
+---
+
+getting repositories
+	git init - create an empty repository in the current directory
+	git clone [url] - copies the git repository to this directory
+
+local changes
+	explain the staging area
+	git status - explain output
+	git add - explain caveats of * and .gitignore, git add patch
+	git diff and git diff --staged and git diff HEAD
+	git reset HEAD <file>
+	git config, setting up variables per repository and global
+	git commit and explain commit guidelines
+	git log (--oneline)
+	git tag
+
+sync changes
+	git remote
+	git pull (--rebase)
+	git push
+
+workflow stuff
+	creating and switching between branches - git branch <> and git checkout <>
+	git branch - list branches (explain output)
+	explain a simple branching model, branch off master, do something, then merge back and delete the branch
+	explain difference between a fork and a branch
+	pull requests
+	github
+
+---
+
