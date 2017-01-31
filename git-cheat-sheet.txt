@@ -8,7 +8,7 @@ Repository Manipulation:
   git init
 
   /* Delete the Git repository in the current directory: */
-  rm .git
+  rm -rf .git
 
 The following commands will only work in a Git repository:
 
