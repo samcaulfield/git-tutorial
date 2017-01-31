@@ -33,7 +33,6 @@ local changes
 	git config, setting up variables per repository and global
 	git commit and explain commit guidelines
 	git log (--oneline)
-	git tag
 
 sync changes
 	git remote
@@ -47,6 +46,7 @@ workflow stuff
 	explain difference between a fork and a branch
 	pull requests
 	github
+	git tag
 
 ---
 
