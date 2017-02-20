@@ -1,0 +1,93 @@
+This tutorial will follow parts of the Git book: https://git-scm.com/book/en/v2/
+
+General points:
+	- The talk should explain the basics of Git, namely the working
+	  directory, the index, the history, branches, rebasing, config and
+	  merges very well. The focus is on covering the core of Git well while
+	  still introducing a good breadth of features. The core of Git should
+	  be well explained with a lot of diagrams.
+	- The talk should briefly mention some useful things Git can do, such
+	  as bisecting, hooks etc. This should be done without overloading the
+	  audience with information.
+	- When a new git command is introduced, explain a few useful options
+	  that the command has. This will keep the talk interesting for people
+	  who are more experienced with Git.
+
+1. Intro to Version Control
+	- What is a VCS?
+	- Why is a VCS useful?
+	- What is a local VCS?
+	- What are Local, Centralised and Distributed VCSes?
+
+2. Intro to Git
+	- Short history of Git
+	- Git basics (snapshots, index vs working directory, design concepts)
+	- Installing Git
+	- First time setup (introduce as much of git config as is reasonable)
+	- Explain the various ways to get help for Git (man pages, --help, etc.)
+
+2. Git Basics
+	Getting a repository:
+	- Introduce git init and git clone
+
+	Making changes to the repository:
+	- Introduce file statuses (explain git status), tracking files
+	- git add patch
+	- Introduce gitignore
+	- Introduce git diff
+	- Introduce git commit
+	- Introduce git rm
+	- Introduce git mv
+
+	Viewing the history:
+	- Introduce git log, explain how to control the output. This is
+	  important because viewing the history is an important part of a VCS.
+
+	Undoing things:
+	- git commit --amend
+	- Unstaging files
+	- Unmodifying files
+
+	Remotes:
+	- Introduce git remote
+	- Introduce git fetch and git pull
+	- Introduce git push
+
+	Tags:
+	- Introduce git tag
+
+	Aliases:
+	- Introduce git aliases
+
+3. Branches in Git
+	Branches in a Nutshell
+	- Introduce git branch (main options)
+	- Diagrams explaining branch pointers
+	- Brief explanation of how branches are implemented, the purpose of this
+	  is to emphasise how fast and cheap they are in Git.
+
+	Basic branching and merging
+
+	Branch management
+
+	Branch workflows
+	- Topic branches
+
+	Remote branches
+
+	Rebasing
+
+4. Git Reset
+	Comprehensive explanation of git reset. In my opinion understanding this
+	is as fundamental to git as branches are.
+
+5. Stashing and cleaning
+
+6. Quick runthrough of git features
+	- Git hooks
+	- Git bisect
+
+7. Quick runthrough of Github
+	- SSH keys
+	- Access logs (this was requested)
+
