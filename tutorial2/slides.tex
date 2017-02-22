@@ -205,4 +205,157 @@
 	\end{itemize}
 \end{frame}
 
+% Section 3: Git Basics
+
+\begin{frame}
+	\frametitle{Getting a Git Repository}
+	\begin{itemize}
+		\item{Two main ways: create one or copy one}
+		\item{To create one: \textbf{git init} or \textbf{git init MyRepo}}
+		\item{To copy one: \textbf{git clone https://github.com/libgit2/libgit2}}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Recording Changes to the Repository}
+	\begin{itemize}
+		\item{Need to make changes and commit snapshots}
+		\item{Files in the working directory are either tracked or untracked}
+		\item{Tracked: Present in the previous snapshot}
+		\item{Untracked: Not present in the previous snapshot or in the staging area}
+		\item{Tracked files can be unmodified, modified, or staged}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.37]{Recording_Changes_to_the_Repository-0.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Checking the Status of Files}
+	\begin{itemize}
+		\item{Done with the \textbf{git status} command}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.50]{Checking_the_Status_of_Files-0.png}
+	\end{figure}
+	\begin{figure}
+		\includegraphics[scale=0.50]{Checking_the_Status_of_Files-1.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Tracking New Files}
+	\begin{itemize}
+		\item{Done with the \textbf{git add} command}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.50]{Tracking_New_Files-0.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Staging Modified Files}
+	\begin{figure}
+		\includegraphics[scale=0.60]{Staging_Modified_Files-0.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Staging Modified Files}
+	\begin{itemize}
+		\item{Done with the \textbf{git add} command}
+		\item{\textbf{git add \texttt{-{}-}patch} can be used to stage parts of files}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.60]{Staging_Modified_Files-1.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Short Status}
+	\begin{itemize}
+		\item{\textbf{git status -s} provides a less verbose status report}
+		\item{Untracked files have a ?? next to them}
+		\item{New files that have been added to the staging area have an A}
+		\item{Modified files have an M, etc.}
+		\item{Left column: index, right column: working directory}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.62]{Short_Status-0.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Ignoring Files}
+	\begin{itemize}
+		\item{The working directory can easily become full of files you don't want to version}
+		\item{.o, .swp, .log, etc.}
+		\item{They can clog up the output of \textbf{git status}}
+		\item{List unwanted file types in a .gitignore file in the repository}
+		\item{\textbf{echo *.o \textgreater{} .gitignore}}
+		\item{Can perform simple pattern matching: doc/**/*.pdf}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Viewing Staged and Unstaged Changes}
+	\begin{itemize}
+		\item{What have I changed but not staged?}
+		\item{What have I staged that I am about to commit?}
+		\item{Use the \textbf{git diff} command}
+		\item{This shows what's changed in the working directory that isn't staged}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.62]{Viewing_Staged_and_Unstaged_Changes-0.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Viewing Staged and Unstaged Changes}
+	\begin{itemize}
+		\item{To view what's new in the staging area use \textbf{git diff --staged}}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.62]{Viewing_Staged_and_Unstaged_Changes-1.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Committing Your Changes}
+	\begin{itemize}
+		\item{Committing creates a new snapshot in the project history}
+		\item{The snapshot is the previous snapshot + the staging area changes}
+		\item{Anything left in the working directory and not in the staging area isn't included}
+		\item{Use the \textbf{git commit} command}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.62]{Committing_Your_Changes-0.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Committing Your Changes}
+	\begin{itemize}
+		\item{Saving and closing the editor confirms the commit}
+		\item{Alternatively, you can use \textbf{git commit -m "Add README and LICENSE"}}
+		\item{Can skip staging with \textbf{git commit -a}}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.62]{Committing_Your_Changes-1.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Removing Files from the Repository}
+	\begin{itemize}
+		\item{Use the \textbf{git rm} command}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.62]{Removing_Files_from_the_Repository-0.png}
+	\end{figure}
+	\begin{itemize}
+		\item{Similarly, \textbf{git mv} can be used to move files}
+	\end{itemize}
+\end{frame}
+
 \end{document}
