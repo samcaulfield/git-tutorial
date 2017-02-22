@@ -358,4 +358,86 @@
 	\end{itemize}
 \end{frame}
 
+\begin{frame}
+	\frametitle{Viewing the Commit History}
+	\begin{itemize}
+		\item{Use the \textbf{git log} command}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.6]{Viewing_the_Commit_History-0.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Viewing the Commit History}
+	\begin{itemize}
+		\item{Can control the output of \textbf{git log}}
+		\item{-p: Show diffs in each commit}
+		\item{-1: Limit output to last 1 commit}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.6]{Viewing_the_Commit_History-1.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Viewing the Commit History}
+	\begin{itemize}
+		\item{Keep logs to one line each: \textbf{git log \texttt{-{}-}pretty=oneline}}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.6]{Viewing_the_Commit_History-2.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Viewing the Commit History}
+	\begin{itemize}
+		\item{Restrict output based on time: \textbf{git log \texttt{-{}-}since=1.day}}
+		\item{See what commits modified a string: \textbf{git log -Ssomestring}}
+		\item{Filter by author: \textbf{git log \texttt{-{}-}author}}
+		\item{Filter by commit message content: \textbf{git log \texttt{-{}-}grep}}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Undoing Things}
+	\begin{itemize}
+		\item{You can amend a commit if you forgot something}
+		\item{Use \textbf{git commit \texttt{-{}-}amend}}
+		\item{Takes your staging area and adds it to the most recent commit}
+		\item{Results in a single commit: original + changes}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Unstaging Staged Files}
+	\begin{itemize}
+		\item{Use the \textbf{git reset HEAD \textless{}file\textgreater{}} command}
+		\item{This removes the file from the staging area}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Unmodifying Modified Files}
+	\begin{itemize}
+		\item{In Git, "unmodifying" means resetting a file back to the previous snapshot}
+		\item{Use the \textbf{git checkout \texttt{-{}-} \textless{}file\textgreater{}} command}
+		\item{Warning: since uncommitted changes are being removed, the changes will be lost}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Aliases}
+	\begin{itemize}
+		\item{Can be used to shorten Git commands}
+		\item{Allows you to type "git st" instead of "git status", etc.}
+		\item{\textbf{git config --global alias.st status}}
+		\item{\textbf{git config --global alias.unstage 'reset HEAD'}}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.62]{Aliases-0.png}
+	\end{figure}
+\end{frame}
+
 \end{document}
