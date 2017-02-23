@@ -440,4 +440,155 @@
 	\end{figure}
 \end{frame}
 
+% Section 4: Branches in Git
+
+\begin{frame}
+	\frametitle{Branches in Git}
+	\begin{itemize}
+		\item{Branching: Diverge from the main line of development}
+		\item{Continue working on a different "line" of development}
+		\item{Can merge back into the main line when complete}
+		\item{One of Git's best features}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{How Git Branches Work}
+	\begin{itemize}
+		\item{When you make a commit, Git stores a commit object}
+		\item{The commit object stores a pointer to the snapshot of the staged content}
+		\item{Each commit also points to its parent, the one that came before it}
+		\item{Only the root commit (the first in the repository) doesn't have a parent}
+		\item{Some commits can have multiple parents in the case of merge commits}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{How Git Branches Work}
+	\begin{figure}
+		\includegraphics[scale=0.40]{How_Git_Branches_Work-0.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{How Git Branches Work}
+	\begin{figure}
+		\includegraphics[scale=0.30]{How_Git_Branches_Work-0.png}
+	\end{figure}
+	\begin{itemize}
+		\item{A branch in Git is simply a pointer to one of these commits}
+		\item{The pointer is moveable}
+		\item{In Git, the default branch is called \textbf{master}}
+		\item{The branch pointer points to the most recent commit on the branch history}
+		\item{When you commit on a branch, the branch pointer automatically moves forward}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{How Git Branches Work}
+	\begin{figure}
+		\includegraphics[scale=0.30]{How_Git_Branches_Work-0.png}
+	\end{figure}
+	\begin{itemize}
+		\item{A branch in Git is simply a pointer to one of these commits}
+		\item{The pointer is moveable}
+		\item{In Git, the default branch is called \textbf{master}}
+		\item{When you commit on a branch, the branch pointer automatically moves forward}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{How Git Branches Work}
+	\begin{figure}
+		\includegraphics[scale=0.30]{How_Git_Branches_Work-1.png}
+	\end{figure}
+	\begin{itemize}
+		\item{Branches can be created with \textbf{git branch \textless{}branchname\textgreater{}}}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Creating Branches}
+	\begin{itemize}
+		\item{The new branch points to the commit you are currently on}
+		\item{\textbf{git branch testing}}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.32]{Creating_Branches-0.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Creating Branches}
+	\begin{itemize}
+		\item{Git uses a special pointer to keep track of what the current branch is}
+		\item{This pointer is called HEAD}
+		\item{\textbf{git branch testing}}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.32]{Creating_Branches-0.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Switching Branches}
+	\begin{itemize}
+		\item{git branch only creates a new branch pointer, it doesn't switch to the branch}
+		\item{To switch to another branch, use \textbf{git checkout \textless{}branchname\textgreater{}}}
+		\item{\textbf{git checkout testing}}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.32]{Switching_Branches-0.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Switching Branches}
+	\begin{itemize}
+		\item{git branch only creates a new branch pointer, it doesn't switch to the branch}
+		\item{To switch to another branch, use \textbf{git checkout \textless{}branchname\textgreater{}}}
+		\item{\textbf{git checkout testing}}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.32]{Switching_Branches-1.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Switching Branches}
+	\begin{itemize}
+		\item{Can also just use  \textbf{git checkout -b \textless{}branchname\textgreater{}}}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.32]{Switching_Branches-1.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Diverging Branches}
+	\begin{figure}
+		\includegraphics[scale=0.4]{Diverging_Branches-0.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Diverging Branches}
+	\begin{itemize}
+		\item{\textbf{git checkout master}}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.4]{Diverging_Branches-1.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Diverging Branches}
+	\begin{itemize}
+		\item{\textbf{git checkout master}}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.4]{Diverging_Branches-1.png}
+	\end{figure}
+\end{frame}
+
 \end{document}
