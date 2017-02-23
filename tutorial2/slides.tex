@@ -566,6 +566,9 @@
 
 \begin{frame}
 	\frametitle{Diverging Branches}
+	\begin{itemize}
+		\item{You make a commit on the testing branch..}
+	\end{itemize}
 	\begin{figure}
 		\includegraphics[scale=0.4]{Diverging_Branches-0.png}
 	\end{figure}
@@ -574,7 +577,7 @@
 \begin{frame}
 	\frametitle{Diverging Branches}
 	\begin{itemize}
-		\item{\textbf{git checkout master}}
+		\item{Then switch back to master with \textbf{git checkout master}..}
 	\end{itemize}
 	\begin{figure}
 		\includegraphics[scale=0.4]{Diverging_Branches-1.png}
@@ -584,10 +587,303 @@
 \begin{frame}
 	\frametitle{Diverging Branches}
 	\begin{itemize}
-		\item{\textbf{git checkout master}}
+		\item{Then make a commit on master}
+		\item{Now the history of master and testing has diverged}
 	\end{itemize}
 	\begin{figure}
-		\includegraphics[scale=0.4]{Diverging_Branches-1.png}
+		\includegraphics[scale=0.4]{Diverging_Branches-2.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Viewing the History with Branches}
+	\begin{itemize}
+		\item{\textbf{git log --all --oneline --graph}}
+		\item{all: show all branches}
+		\item{graph: visually indicate divergent history}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.45]{Viewing_the_History_With_Branches-0.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Advantages of Branches in Git}
+	\begin{itemize}
+		\item{In Git, a branch is a file containing a 40-character SHA-1}
+		\item{The SHA-1 is the checksum of the commit it points to}
+		\item{Creating a new branch in Git = writing 41 bytes to a file}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Merging Branches}
+	\begin{itemize}
+		\item{A common use case for branches is "feature branches"}
+		\item{You create a new branch for a feature}
+		\item{You do the commits for that feature on that branch only}
+		\item{Once the feature is done, you merge the feature branch into master}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Merging Branches}
+	\begin{itemize}
+		\item{Master branch and new branch "iss53" created}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.4]{Merging_Branches-0.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Merging Branches}
+	\begin{itemize}
+		\item{\textbf{git checkout iss53}}
+		\item{Do some work and \textbf{git commit}}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.4]{Merging_Branches-1.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Merging Branches}
+	\begin{itemize}
+		\item{Notified of a bug on master branch}
+		\item{\textbf{git checkout master}}
+		\item{\textbf{git checkout -b hotfix}}
+		\item{Write a fix and \textbf{git commit}}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.4]{Merging_Branches-2.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Merging Branches}
+	\begin{itemize}
+		\item{Hotfix doesn't exist on master unless we manually merge it}
+		\item{To merge in Git, use \textbf{git merge \textless{}branch\textgreater{}}}
+		\item{This merges \textless{}branch\textgreater{} into the current branch}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.5]{Merging_Branches-3.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Merging Branches}
+	\begin{itemize}
+		\item{In this case, the merge is a "fast forward"}
+		\item{This is because the hotfix pointer was directly ahead of master}
+		\item{So the master pointer can simply be moved forward to hotfix}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.5]{Merging_Branches-3.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Merging Branches}
+	\begin{itemize}
+		\item{In this case, the merge is a "fast forward"}
+		\item{This is because the hotfix pointer was directly ahead of master}
+		\item{So the master pointer can simply be moved forward to hotfix}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.35]{Merging_Branches-4.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Merging Branches}
+	\begin{itemize}
+		\item{Once a branch has been finally merged you can delete it}
+		\item{Do this with \textbf{git branch -d hotfix}}
+		\item{This only deletes the pointer, the commits are safely on master}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.35]{Merging_Branches-4.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Merging Branches}
+	\begin{itemize}
+		\item{Now we switch back to iss53 branch and continue committing}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.37]{Merging_Branches-5.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Merging Branches}
+	\begin{itemize}
+		\item{Once iss53 is complete, it can be merged into master}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.5]{Merging_Branches-6.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Merging Branches}
+	\begin{itemize}
+		\item{This merge wasn't a fast forward}
+		\item{This is because the current commit in master isn't a direct ancestor of the top commit in iss53}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.38]{Merging_Branches-7.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Merging Branches}
+	\begin{itemize}
+		\item{Git creates a new snapshot for this merge}
+		\item{A new commit is create that points to it}
+		\item{This is often called a "merge commit"}
+		\item{This merge commit has two parents}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.38]{Merging_Branches-8.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Merge Conflicts}
+	\begin{itemize}
+		\item{Not all merges go so smoothly}
+		\item{If the top snapshot on each branch have different versions of the same file a merge conflict occurs}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.38]{Merging_Branches-9.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Merge Conflicts}
+	\begin{itemize}
+		\item{Not all merges go so smoothly}
+		\item{If the top snapshot on each branch have different versions of the same file a merge conflict occurs}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.38]{Merging_Branches-10.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Merge Conflicts}
+	\begin{itemize}
+		\item{To resolve, open the conflicting file(s) in your editor}
+		\item{Manually resolve the conflicts}
+		\item{Git labels the conflicting segments of the file}
+		\item{In this case, pick one version and delete the other}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.4]{Merging_Branches-11.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Merge Conflicts}
+	\begin{itemize}
+		\item{Once the files have been edited to resolve the conflicts:}
+		\item{Stage the files}
+		\item{\textbf{git commit}}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.4]{Merging_Branches-12.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Branch Management}
+	\begin{itemize}
+		\item{List branches with top commit on each: \textbf{git branch -v}}
+		\item{List branches that are merged into current branch: \textbf{git branch --merged}}
+		\item{List unmerged branches: \textbf{git branch --no-merged}}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Rebasing}
+	\begin{itemize}
+		\item{Rebasing is another way of integrating changes from one branch into another}
+		\item{In some situations it's better than merging, in some it's worse, and in some you shouldn't do it at all}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Rebasing}
+	\begin{figure}
+		\includegraphics[scale=0.4]{Rebasing-0.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Rebasing}
+	\begin{figure}
+		\includegraphics[scale=0.4]{Rebasing-1.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Rebasing}
+	\begin{itemize}
+		\item{Can use rebasing to keep the history linear}
+		\item{Take the patch introduced in C4 and reapply it on top of C3}
+		\item{Avoids a merge commit}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.4]{Rebasing-2.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Rebasing}
+	\begin{itemize}
+		\item{Can use rebasing to keep the history linear}
+		\item{Take the patch introduced in C4 and reapply it on top of C3}
+		\item{Avoids a merge commit}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.4]{Rebasing-3.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Rebasing}
+	\begin{itemize}
+		\item{Now the history has been linearised with regard to the two branches}
+		\item{Just need to update master's branch pointer}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.4]{Rebasing-4.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Rebasing}
+	\begin{itemize}
+		\item{Now the history has been linearised with regard to the two branches}
+		\item{Just need to update master's branch pointer}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.4]{Rebasing-5.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Rebasing}
+	\begin{itemize}
+		\item{Now the history has been linearised with regard to the two branches}
+		\item{Just need to update master's branch pointer}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.4]{Rebasing-5.png}
 	\end{figure}
 \end{frame}
 
