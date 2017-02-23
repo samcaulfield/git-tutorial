@@ -11,25 +11,39 @@
 \begin{frame}
 	\frametitle{Plan}
 	\begin{itemize}
-		\item{Intro to Version Control}
+		\item{Quick Intro to Version Control}
 		\item{Getting Started}
 		\item{Git Basics}
+		\begin{itemize}
+			\item{Recording Changes}
+			\item{Staging}
+			\item{Committing}
+			\item{Viewing History}
+		\end{itemize}
 		\item{Branches in Git}
-		\item{Git Reset in Detail}
+		\begin{itemize}
+			\item{Branches}
+			\item{Merging}
+			\item{Rebasing}
+		\end{itemize}
+		\item{Slides based off https://git-scm.com/book/en/v2}
 	\end{itemize}
 \end{frame}
 
-% Section 1: Into to Version Control
+% Section 1: Quick Into to Version Control
 
 \begin{frame}
-	\frametitle{Intro to Version Control}
+	\frametitle{Quick Intro to Version Control}
 	\begin{itemize}
-		\item{System that records changes to a file or set of files over time (VCS)}
+		\item{VCS: Version Control System}
+		\item{System that records changes to a file or set of files over time}
 		\item{Can recall specific versions at a later time}
-		\item{Can revert individual files or even the entire project to a previous state}
-		\item{Can compare changes in files over time}
-		\item{Can see who modified something and when}
-		\item{Does the very efficiently}
+		\begin{itemize}
+			\item{Revert individual files or even the entire project to a previous state}
+			\item{Compare changes in files over time}
+			\item{See who modified something and when}
+			\item{Do the above efficiently}
+		\end{itemize}
 		\item{Set of all versions of all files called a repository}
 	\end{itemize}
 \end{frame}
@@ -38,6 +52,7 @@
 	\frametitle{Local VCS}
 	\begin{itemize}
 		\item{Simple database containing all changes to file under version control}
+		\item{You "check out" versions of the project history}
 	\end{itemize}
 	\begin{figure}
 		\includegraphics[scale=0.25]{Local_VCS-0.png}
@@ -49,7 +64,6 @@
 	\begin{itemize}
 		\item{Used to collaborate with other developers}
 		\item{Single server contains all the versioned files}
-		\item{Clients check out snapshots from the server}
 	\end{itemize}
 	\begin{figure}
 		\includegraphics[scale=0.25]{Centralised_VCS-0.png}
@@ -79,7 +93,7 @@
 			\item{Simple design}
 			\item{Able to handle large projects}
 			\item{Fully distributed}
-			\item{Very good support for non-linear development}
+			\item{Very good support for non-linear development (branches)}
 		\end{itemize}
 	\end{itemize}
 \end{frame}
@@ -88,21 +102,23 @@
 	\frametitle{Differences}
 	\begin{itemize}
 		\item{Store initial file version and each change over time}
+		\item{Subversion uses this method}
 	\end{itemize}
 	\begin{figure}
-		\includegraphics[scale=0.25]{Differences-0.png}
+		\includegraphics[scale=0.3]{Differences-0.png}
 	\end{figure}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Snapshots}
 	\begin{itemize}
+		\item{This is the method Git uses}
 		\item{Every time you commit (save) the project state, a new snapshot of is made}
-		\item{A snapshot is a "picture" of all the files in the repo}
+		\item{A snapshot is a "picture" of all the files in the repo at that time}
 		\item{Files that haven't changed aren't saved for efficiency}
 	\end{itemize}
 	\begin{figure}
-		\includegraphics[scale=0.25]{Snapshots-0.png}
+		\includegraphics[scale=0.3]{Snapshots-0.png}
 	\end{figure}
 \end{frame}
 
@@ -114,9 +130,6 @@
 		\item{No network latency}
 		\item{Can work offline}
 	\end{itemize}
-	\begin{figure}
-		\includegraphics[scale=0.25]{Snapshots-0.png}
-	\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -124,9 +137,9 @@
 	\begin{itemize}
 		\item{Everything stored in Git is check-summed}
 		\item{Changing something changes the checksum and the history}
-		\item{Git is able to detect any file corruption or modification}
-		\item{24b9da6552252987aa493b52f8696cd6d3b00373}
+		\item{Git is able to detect file corruption or modification}
 		\item{SHA-1 hash (40-char hex string)}
+		\item{24b9da6552252987aa493b52f8696cd6d3b00373}
 	\end{itemize}
 \end{frame}
 
@@ -152,6 +165,9 @@
 		\item{Uncompressing a snapshot from .git is called "checking out"}
 		\item{The staging area stores information about what goes into the next commit}
 	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.25]{The_Three_States-0.png}
+	\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -177,9 +193,9 @@
 		\item{Configuration in git is done with the \textbf{git config} command}
 		\item{This command allows you to get and set configuration variables}
 		\item{These variables can be stored in three different places}
-		\item{/etc/gitconfig file: System-wide values, use --system switch}
-		\item{\textasciitilde{}/.gitconfig or \textasciitilde{}/.config/git/config file: This user only, use --global switch}
-		\item{.git/config file: This repository only, no switch required}
+		\item{\textit{/etc/gitconfig} file: System-wide values, use \texttt{-{}-}system switch}
+		\item{\textasciitilde{}\textit{/.gitconfig} or \textasciitilde{}\textit{/.config/git/config} file: This user only, use \texttt{-{}-}global switch}
+		\item{\textit{.git/config} file: This repository only, no switch required (default option)}
 	\end{itemize}
 \end{frame}
 
@@ -247,16 +263,22 @@
 	\frametitle{Tracking New Files}
 	\begin{itemize}
 		\item{Done with the \textbf{git add} command}
+		\item{This \textit{stages} the file, which makes it become tracked}
 	\end{itemize}
 	\begin{figure}
-		\includegraphics[scale=0.50]{Tracking_New_Files-0.png}
+		\includegraphics[scale=0.54]{Tracking_New_Files-0.png}
 	\end{figure}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Staging Modified Files}
+	\begin{itemize}
+		\item{We modified the file}
+		\item{The new changes aren't automatically staged}
+		\item{Now the file has staged modifications and unstaged modifications}
+	\end{itemize}
 	\begin{figure}
-		\includegraphics[scale=0.60]{Staging_Modified_Files-0.png}
+		\includegraphics[scale=0.55]{Staging_Modified_Files-0.png}
 	\end{figure}
 \end{frame}
 
@@ -275,13 +297,13 @@
 	\frametitle{Short Status}
 	\begin{itemize}
 		\item{\textbf{git status -s} provides a less verbose status report}
-		\item{Untracked files have a ?? next to them}
-		\item{New files that have been added to the staging area have an A}
-		\item{Modified files have an M, etc.}
+		\item{Untracked files have a \textit{??} next to them}
+		\item{New files that have been added to the staging area have an \textit{A}}
+		\item{Modified files have an \textit{M}, etc.}
 		\item{Left column: index, right column: working directory}
 	\end{itemize}
 	\begin{figure}
-		\includegraphics[scale=0.62]{Short_Status-0.png}
+		\includegraphics[scale=0.63]{Short_Status-0.png}
 	\end{figure}
 \end{frame}
 
@@ -304,6 +326,7 @@
 		\item{What have I staged that I am about to commit?}
 		\item{Use the \textbf{git diff} command}
 		\item{This shows what's changed in the working directory that isn't staged}
+		\item{i.e. it shows the \textit{diff}erence between the staging area and working directory}
 	\end{itemize}
 	\begin{figure}
 		\includegraphics[scale=0.62]{Viewing_Staged_and_Unstaged_Changes-0.png}
@@ -313,7 +336,7 @@
 \begin{frame}
 	\frametitle{Viewing Staged and Unstaged Changes}
 	\begin{itemize}
-		\item{To view what's new in the staging area use \textbf{git diff --staged}}
+		\item{To view the exact changes in the staging area use \textbf{git diff \texttt{-{}-}staged}}
 	\end{itemize}
 	\begin{figure}
 		\includegraphics[scale=0.62]{Viewing_Staged_and_Unstaged_Changes-1.png}
@@ -338,7 +361,7 @@
 	\begin{itemize}
 		\item{Saving and closing the editor confirms the commit}
 		\item{Alternatively, you can use \textbf{git commit -m "Add README and LICENSE"}}
-		\item{Can skip staging with \textbf{git commit -a}}
+		\item{Using \textbf{git commit -a} will add all tracked files to the commit automatically}
 	\end{itemize}
 	\begin{figure}
 		\includegraphics[scale=0.62]{Committing_Your_Changes-1.png}
@@ -349,6 +372,8 @@
 	\frametitle{Removing Files from the Repository}
 	\begin{itemize}
 		\item{Use the \textbf{git rm} command}
+		\item{The removed file will not be in the next snapshot}
+		\item{But all previous versions in history will be untouched}
 	\end{itemize}
 	\begin{figure}
 		\includegraphics[scale=0.62]{Removing_Files_from_the_Repository-0.png}
@@ -364,7 +389,7 @@
 		\item{Use the \textbf{git log} command}
 	\end{itemize}
 	\begin{figure}
-		\includegraphics[scale=0.6]{Viewing_the_Commit_History-0.png}
+		\includegraphics[scale=0.4]{Viewing_the_Commit_History-0.png}
 	\end{figure}
 \end{frame}
 
@@ -407,6 +432,7 @@
 		\item{Use \textbf{git commit \texttt{-{}-}amend}}
 		\item{Takes your staging area and adds it to the most recent commit}
 		\item{Results in a single commit: original + changes}
+		\item{Allows you to redo the commit message}
 	\end{itemize}
 \end{frame}
 
@@ -415,6 +441,8 @@
 	\begin{itemize}
 		\item{Use the \textbf{git reset HEAD \textless{}file\textgreater{}} command}
 		\item{This removes the file from the staging area}
+		\item{This is safe because the changes are also in the working directory}
+		\item{Warning: \textbf{git reset \texttt{-{}-}hard} isn't necessarily safe}
 	\end{itemize}
 \end{frame}
 
@@ -423,7 +451,7 @@
 	\begin{itemize}
 		\item{In Git, "unmodifying" means resetting a file back to the previous snapshot}
 		\item{Use the \textbf{git checkout \texttt{-{}-} \textless{}file\textgreater{}} command}
-		\item{Warning: since uncommitted changes are being removed, the changes will be lost}
+		\item{Warning: since uncommitted changes are being removed from the working directory, the changes will be lost unless they are also staged}
 	\end{itemize}
 \end{frame}
 
@@ -487,19 +515,6 @@
 \begin{frame}
 	\frametitle{How Git Branches Work}
 	\begin{figure}
-		\includegraphics[scale=0.30]{How_Git_Branches_Work-0.png}
-	\end{figure}
-	\begin{itemize}
-		\item{A branch in Git is simply a pointer to one of these commits}
-		\item{The pointer is moveable}
-		\item{In Git, the default branch is called \textbf{master}}
-		\item{When you commit on a branch, the branch pointer automatically moves forward}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{How Git Branches Work}
-	\begin{figure}
 		\includegraphics[scale=0.30]{How_Git_Branches_Work-1.png}
 	\end{figure}
 	\begin{itemize}
@@ -510,23 +525,13 @@
 \begin{frame}
 	\frametitle{Creating Branches}
 	\begin{itemize}
-		\item{The new branch points to the commit you are currently on}
 		\item{\textbf{git branch testing}}
-	\end{itemize}
-	\begin{figure}
-		\includegraphics[scale=0.32]{Creating_Branches-0.png}
-	\end{figure}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Creating Branches}
-	\begin{itemize}
+		\item{The new branch points to the commit you are currently on}
 		\item{Git uses a special pointer to keep track of what the current branch is}
 		\item{This pointer is called HEAD}
-		\item{\textbf{git branch testing}}
 	\end{itemize}
 	\begin{figure}
-		\includegraphics[scale=0.32]{Creating_Branches-0.png}
+		\includegraphics[scale=0.32]{Creating_Branches-1.png}
 	\end{figure}
 \end{frame}
 
@@ -601,6 +606,7 @@
 		\item{\textbf{git log --all --oneline --graph}}
 		\item{all: show all branches}
 		\item{graph: visually indicate divergent history}
+		\item{decorate: show where branch pointers are}
 	\end{itemize}
 	\begin{figure}
 		\includegraphics[scale=0.45]{Viewing_the_History_With_Branches-0.png}
@@ -664,6 +670,8 @@
 	\frametitle{Merging Branches}
 	\begin{itemize}
 		\item{Hotfix doesn't exist on master unless we manually merge it}
+		\item{Remember commit pointers are unidirectional}
+		\item{Master can't see further up the chain}
 		\item{To merge in Git, use \textbf{git merge \textless{}branch\textgreater{}}}
 		\item{This merges \textless{}branch\textgreater{} into the current branch}
 	\end{itemize}
@@ -724,7 +732,7 @@
 		\item{Once iss53 is complete, it can be merged into master}
 	\end{itemize}
 	\begin{figure}
-		\includegraphics[scale=0.5]{Merging_Branches-6.png}
+		\includegraphics[scale=0.6]{Merging_Branches-6.png}
 	\end{figure}
 \end{frame}
 
@@ -756,10 +764,10 @@
 	\frametitle{Merge Conflicts}
 	\begin{itemize}
 		\item{Not all merges go so smoothly}
-		\item{If the top snapshot on each branch have different versions of the same file a merge conflict occurs}
+		\item{If the top snapshot on each branch has a different version of the same file a merge conflict occurs}
 	\end{itemize}
 	\begin{figure}
-		\includegraphics[scale=0.38]{Merging_Branches-9.png}
+		\includegraphics[scale=0.4]{Merging_Branches-9.png}
 	\end{figure}
 \end{frame}
 
@@ -795,7 +803,7 @@
 		\item{\textbf{git commit}}
 	\end{itemize}
 	\begin{figure}
-		\includegraphics[scale=0.4]{Merging_Branches-12.png}
+		\includegraphics[scale=0.5]{Merging_Branches-12.png}
 	\end{figure}
 \end{frame}
 
@@ -803,8 +811,8 @@
 	\frametitle{Branch Management}
 	\begin{itemize}
 		\item{List branches with top commit on each: \textbf{git branch -v}}
-		\item{List branches that are merged into current branch: \textbf{git branch --merged}}
-		\item{List unmerged branches: \textbf{git branch --no-merged}}
+		\item{List branches that are merged into current branch: \textbf{git branch \texttt{-{}-}merged}}
+		\item{List unmerged branches: \textbf{git branch \texttt{-{}-}no-merged}}
 	\end{itemize}
 \end{frame}
 
@@ -825,6 +833,9 @@
 
 \begin{frame}
 	\frametitle{Rebasing}
+	\begin{itemize}
+		\item{Two branches merged normally}
+	\end{itemize}
 	\begin{figure}
 		\includegraphics[scale=0.4]{Rebasing-1.png}
 	\end{figure}
@@ -870,6 +881,7 @@
 	\begin{itemize}
 		\item{Now the history has been linearised with regard to the two branches}
 		\item{Just need to update master's branch pointer}
+		\item{Due to the rebase, the merge is a fast-forward, hence no commit}
 	\end{itemize}
 	\begin{figure}
 		\includegraphics[scale=0.4]{Rebasing-5.png}
