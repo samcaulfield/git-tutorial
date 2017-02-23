@@ -1,5 +1,7 @@
 \documentclass{beamer}
 \graphicspath{{images/}}
+\usepackage{pgfpages}
+\setbeameroption{show notes on second screen=right}
 
 \title{Intro to Git}
 \date{}
@@ -28,6 +30,8 @@
 		\end{itemize}
 		\item{Slides based off https://git-scm.com/book/en/v2}
 	\end{itemize}
+
+	\note[item]{Test note here}
 \end{frame}
 
 % Section 1: Quick Into to Version Control
@@ -68,6 +72,8 @@
 	\begin{figure}
 		\includegraphics[scale=0.25]{Centralised_VCS-0.png}
 	\end{figure}
+
+	\note[item]{Only checked-out version copied to local machine}
 \end{frame}
 
 \begin{frame}
@@ -79,6 +85,8 @@
 	\begin{figure}
 		\includegraphics[scale=0.25]{Distributed_VCS-0.png}
 	\end{figure}
+
+	\note[item]{Whole history copied to each machine}
 \end{frame}
 
 % Section 2: Getting Started
@@ -99,6 +107,16 @@
 \end{frame}
 
 \begin{frame}
+	\frametitle{Installing Git}
+	\begin{itemize}
+		\item{Available on Linux, Windows, Mac}
+		\item{Package managers or from source at https://github.com/git/git/releases}
+	\end{itemize}
+
+	\note[item]{This is just a quick note for the few if any that don't know}
+\end{frame}
+
+\begin{frame}
 	\frametitle{Differences}
 	\begin{itemize}
 		\item{Store initial file version and each change over time}
@@ -107,19 +125,24 @@
 	\begin{figure}
 		\includegraphics[scale=0.3]{Differences-0.png}
 	\end{figure}
+
+	\note[item]{Mention how snapshots are rebuilt from deltas}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Snapshots}
 	\begin{itemize}
 		\item{This is the method Git uses}
-		\item{Every time you commit (save) the project state, a new snapshot of is made}
+		\item{Every time you commit (save) the project state, a new snapshot of the project is made}
 		\item{A snapshot is a "picture" of all the files in the repo at that time}
 		\item{Files that haven't changed aren't saved for efficiency}
 	\end{itemize}
 	\begin{figure}
 		\includegraphics[scale=0.3]{Snapshots-0.png}
 	\end{figure}
+
+	\note[item]{State speed advantage over deltas}
+	\note[item]{Explain diagram, e.g. unchanged files not re-saved}
 \end{frame}
 
 \begin{frame}
@@ -130,6 +153,8 @@
 		\item{No network latency}
 		\item{Can work offline}
 	\end{itemize}
+
+	\note[item]{Nothing is shared automatically}
 \end{frame}
 
 \begin{frame}
@@ -141,6 +166,8 @@
 		\item{SHA-1 hash (40-char hex string)}
 		\item{24b9da6552252987aa493b52f8696cd6d3b00373}
 	\end{itemize}
+
+	\note[item]{You frequently refer to objects in Git directly by their hash}
 \end{frame}
 
 \begin{frame}
@@ -155,6 +182,8 @@
 	\begin{figure}
 		\includegraphics[scale=0.25]{The_Three_States-0.png}
 	\end{figure}
+
+	\note[item]{Each state (working dir etc.) is explained on next slide}
 \end{frame}
 
 \begin{frame}
@@ -168,6 +197,8 @@
 	\begin{figure}
 		\includegraphics[scale=0.25]{The_Three_States-0.png}
 	\end{figure}
+
+	\note[item]{Development cycle explain in next slide}
 \end{frame}
 
 \begin{frame}
@@ -176,14 +207,6 @@
 		\item{1. Modify files in working tree}
 		\item{2. Stage some of the modified files}
 		\item{3. Do a commit, saving the contents of the staging area into a new snapshot}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Installing Git}
-	\begin{itemize}
-		\item{Available on Linux, Windows, Mac}
-		\item{Package managers or from source at https://github.com/git/git/releases}
 	\end{itemize}
 \end{frame}
 
@@ -230,6 +253,8 @@
 		\item{To create one: \textbf{git init} or \textbf{git init MyRepo}}
 		\item{To copy one: \textbf{git clone https://github.com/libgit2/libgit2}}
 	\end{itemize}
+
+	\note[item]{This is just another quick note, most will know this}
 \end{frame}
 
 \begin{frame}
@@ -873,6 +898,18 @@
 	\end{itemize}
 	\begin{figure}
 		\includegraphics[scale=0.4]{Rebasing-4.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Rebasing}
+	\begin{itemize}
+		\item{Now the history has been linearised with regard to the two branches}
+		\item{Just need to update master's branch pointer}
+		\item{Due to the rebase, the merge is a fast-forward, hence no commit}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.4]{Rebasing-5.png}
 	\end{figure}
 \end{frame}
 
