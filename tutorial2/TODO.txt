@@ -1,0 +1,10 @@
+notes:
+ - notes on using git for data science (version controlling models etc)
+ - bit on submodules
+ - large file storage
+ - --amend  --no-edit
+ - `git commit --fixup :/search`
+
+Generate slides:
+ - One with notes included, one without
+
