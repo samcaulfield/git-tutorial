@@ -13,6 +13,14 @@ General points:
 	  that the command has. This will keep the talk interesting for people
 	  who are more experienced with Git.
 
+Opening questions to ask to gauge the level of the audience (hands up):
+ - Who has used Git before? (Git Intro)
+ - Who has merged a branch before? (Basic Branches)
+ - Who knows what the staging area is? (Basic Staging Area)
+ - Who knows how to unstage only staged changes to tracked files? (Intermediate Staging Area)
+ - Who has done an interactive rebase before? (Advanced Branches)
+ - Who has used git bisect to find the commit that introduced a bug? (Advanced Branches)
+
 1. Intro to Version Control
 	- What is a VCS?
 	- Why is a VCS useful?

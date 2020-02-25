@@ -1,9 +1,12 @@
 \documentclass{beamer}
 \graphicspath{{images/}}
 \usepackage{pgfpages}
+\usepackage{textcomp}
 \setbeameroption{show notes on second screen=right}
 
-\title{Intro to Git}
+\title{Effective Git}
+\author{Sam Caulfield \textlangle{}sam@samcaulfield.com\textrangle{}}
+\titlegraphic{\includegraphics[scale=0.1]{Git_icon.png}}
 \date{}
 
 \begin{document}
@@ -11,10 +14,11 @@
 \frame{\titlepage}
 
 \begin{frame}
-	\frametitle{Plan}
+	\frametitle{Contents}
 	\begin{itemize}
+		\item{What is Git and why should I care?}
 		\item{Quick Intro to Version Control}
-		\item{Getting Started}
+		\item{Getting Started with Git}
 		\item{Git Basics}
 		\begin{itemize}
 			\item{Recording Changes}
@@ -28,10 +32,38 @@
 			\item{Merging}
 			\item{Rebasing}
 		\end{itemize}
+		\item{Tips and Tricks}
 		\item{Slides based off https://git-scm.com/book/en/v2}
 	\end{itemize}
 
 	\note[item]{Test note here}
+\end{frame}
+
+% What is Git and why should I care?
+
+\begin{frame}
+	\frametitle{What is Git and why should I care?}
+	\begin{itemize}
+		\item{Track changes to text files over time.}
+		\item{Provides much-needed structure to the software development process.}
+		\item{Can tremendously improve efficiency of a developer.}
+		\item{Can dramatically reduce the headache of collaborating with other developers.}
+	\end{itemize}
+
+	\note[item]{Git is a Version Control System (VCS).}
+	\note[item]{Git is not purely a collaboration tool.}
+	\note[item]{Tools exist to help Git with version-controlling non-text files.}
+\end{frame}
+
+% TODO golf-cart vs jet fighter image
+\begin{frame}
+\begin{tabular}{cc}
+  \includegraphics[height=0.4\textheight]{golfcart.jpg}
+  &
+  \includegraphics[height=0.5\textheight]{f35.jpg}
+   \\
+   Subversion&Git
+ \end{tabular}
 \end{frame}
 
 % Section 1: Quick Into to Version Control
@@ -69,12 +101,14 @@
 	\begin{itemize}
 		\item{Used to collaborate with other developers}
 		\item{Single server contains all the versioned files}
+		\item{Example: Subversion (SVN)}
 	\end{itemize}
 	\begin{figure}
 		\includegraphics[scale=0.25]{Centralised_VCS-0.png}
 	\end{figure}
 
 	\note[item]{Only checked-out version copied to local machine}
+	\note[item]{May need an internet connection to be able to do anything with the repo.}
 \end{frame}
 
 \begin{frame}
@@ -100,6 +134,7 @@
 		\begin{itemize}
 			\item{Speed}
 			\item{Simple design}
+			\item{Model human interaction}
 			\item{Able to handle large projects}
 			\item{Fully distributed}
 			\item{Very good support for non-linear development (branches)}
@@ -111,10 +146,8 @@
 	\frametitle{Installing Git}
 	\begin{itemize}
 		\item{Available on Linux, Windows, Mac}
-		\item{Package managers or from source at https://github.com/git/git/releases}
+		\item{Package managers, https://git-scm.com/downloads, or from source at https://github.com/git/git/releases}
 	\end{itemize}
-
-	\note[item]{This is just a quick note for the few if any that don't know}
 \end{frame}
 
 \begin{frame}
@@ -150,9 +183,10 @@
 	\frametitle{Almost everything in Git is local}
 	\begin{itemize}
 		\item{Most operations in Git only affect your local copy of the repo}
-		\item{Very rarely need to go onto the network}
+		\item{Rarely need to go onto the network}
 		\item{No network latency}
 		\item{Can work offline}
+		\item{Syncing with remotes is manual}
 	\end{itemize}
 
 	\note[item]{Nothing is shared automatically}
@@ -169,13 +203,52 @@
 	\end{itemize}
 
 	\note[item]{You frequently refer to objects in Git directly by their hash}
+	\note[item]{Commits are identified by their hash}
 \end{frame}
+
+% "The Git Repository": how a normal folder is turned into a git repo and what that means
+
+\begin{frame}
+	\frametitle{The Git Repository}
+	\begin{itemize}
+		\item{A Git repository is a folder}
+		\item{Use "git init" to make a folder a Git repository}
+		\item{Git keeps out of your hair}
+	\end{itemize}
+	\note[item]{Git never modifies your files. Git just stores additional info about them in .git}
+\end{frame}
+
+\begin{frame}
+	\frametitle{The Git Repository}
+	\begin{itemize}
+		\item{Git stores repo information in .git/}
+		\item{When a Git command is run, Git peeks into .git/}
+		\item{Git sees everything (but only watches what we tell it to)}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.5]{panopticon.jpg}
+		\caption{The Panopticon by Jenni Fagan}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Important Terminology}
+	\begin{itemize}
+		\item{Repository: All tracked files including their previous versions}
+		\item{Working Copy: The project files as they exist at a particular version}
+		\item{Tracked file: File that was in the previous snapshot}
+		\item{Untracked file: File that wasn't in the previous snapshot}
+	\end{itemize}
+	\note[item]{If you get a repository, you get all files in the history of the project.}
+\end{frame}
+
+% TODO tracked / untracked here
 
 \begin{frame}
 	\frametitle{The Three States}
 	\begin{itemize}
 		\item{One of the most important things in Git}
-		\item{Files in your repository exist in one of three states}
+		\item{Files in your working copy exist in one of three states}
 		\item{Committed: Safely stored in your local database}
 		\item{Modified: Changed a file but not committed it yet}
 		\item{Staged: Marked a modified file to go in the next commit snapshot}
@@ -914,16 +987,42 @@
 	\end{figure}
 \end{frame}
 
+% TODO
 \begin{frame}
-	\frametitle{Rebasing}
+	\frametitle{Cherry-picking}
 	\begin{itemize}
-		\item{Now the history has been linearised with regard to the two branches}
-		\item{Just need to update master's branch pointer}
-		\item{Due to the rebase, the merge is a fast-forward, hence no commit}
+		\item{}
 	\end{itemize}
 	\begin{figure}
-		\includegraphics[scale=0.4]{Rebasing-5.png}
+		\includegraphics[scale=0.4]{}
 	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Git Hooks}
+	\being{itemize}
+		\item{Custom script that can be run when various Git actions occur}
+		\item{Pre-commit, post-commit, post-merge, pre-push, etc.}
+		\item{Live in .git/hooks directory}
+		\item{Can be written in any language, compiled or interpreted}
+	\end{itemize}
+	\note[item]{Scripts commonly written in shell scripting languages, Python, Perl, Ruby}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Tips and Tricks}
+	\begin{itemize}
+		\item{git clone -b <branch name> --single-branch  <repo path>}
+		\item{git push --force-with-lease}
+		\item{git cherry -v master}
+		\item{git branch --merged}
+		\item{git clean -fd}
+		\item{git pull --rebase --autostash}
+		\item{git config --global core.excludesfile ~/projects/dotfiles/gitignore-global.txt}
+		\item{git shortlog --since="1 week ago"}
+		\item{git log -S"Hello, World!"}
+	\end{itemize}
+	\note[item]{reflog is completely local, stores history of what HEAD pointed to}
 \end{frame}
 
 \end{document}
