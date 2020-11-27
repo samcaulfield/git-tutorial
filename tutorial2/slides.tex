@@ -1,8 +1,11 @@
 \documentclass{beamer}
+%\documentclass[notes=hide]{beamer}
 \graphicspath{{images/}}
 \usepackage{pgfpages}
+\usepackage{tcolorbox}
 \usepackage{textcomp}
 \setbeameroption{show notes on second screen=right}
+%\setbeameroption{show notes on second screen=right}
 
 \title{Effective Git}
 \author{Sam Caulfield \textlangle{}sam@samcaulfield.com\textrangle{}}
@@ -33,7 +36,6 @@
 			\item{Rebasing}
 		\end{itemize}
 		\item{Tips and Tricks}
-		\item{Slides based off https://git-scm.com/book/en/v2}
 	\end{itemize}
 
 	\note[item]{Test note here}
@@ -55,7 +57,6 @@
 	\note[item]{Tools exist to help Git with version-controlling non-text files.}
 \end{frame}
 
-% TODO golf-cart vs jet fighter image
 \begin{frame}
 \begin{tabular}{cc}
   \includegraphics[height=0.4\textheight]{golfcart.jpg}
@@ -148,6 +149,9 @@
 		\item{Available on Linux, Windows, Mac}
 		\item{Package managers, https://git-scm.com/downloads, or from source at https://github.com/git/git/releases}
 	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.3]{gitgit.png}
+	\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -192,20 +196,6 @@
 	\note[item]{Nothing is shared automatically}
 \end{frame}
 
-\begin{frame}
-	\frametitle{Git has built-in integrity checking}
-	\begin{itemize}
-		\item{Everything stored in Git is check-summed}
-		\item{Changing something changes the checksum and the history}
-		\item{Git is able to detect file corruption or modification}
-		\item{SHA-1 hash (40-char hex string)}
-		\item{24b9da6552252987aa493b52f8696cd6d3b00373}
-	\end{itemize}
-
-	\note[item]{You frequently refer to objects in Git directly by their hash}
-	\note[item]{Commits are identified by their hash}
-\end{frame}
-
 % "The Git Repository": how a normal folder is turned into a git repo and what that means
 
 \begin{frame}
@@ -229,6 +219,38 @@
 		\includegraphics[scale=0.5]{panopticon.jpg}
 		\caption{The Panopticon by Jenni Fagan}
 	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Getting a Git Repository}
+	\begin{itemize}
+		\item{Two main ways: create one or copy one}
+		\item{To create one: \textbf{git init} or \textbf{git init MyRepo}}
+		\item{To copy one: \textbf{git clone https://github.com/libgit2/libgit2}}
+	\end{itemize}
+
+	\note[item]{This is just another quick note, most will know this}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Getting help}
+	\begin{itemize}
+		\item{\textbf{git help \textless{}verb\textgreater{}}}
+		\item{\textbf{git \textless{}verb\textgreater{} \texttt{-{}-}help}}
+		\item{\textbf{man git-\textless{}verb\textgreater{}}}
+		\item{https://git-scm.com/book/en/v2/}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Important Terminology}
+	\begin{itemize}
+		\item{Repository: All tracked files including their previous versions}
+		\item{Working Copy: The project files as they exist at a particular version}
+		\item{Tracked file: File that was in the previous snapshot}
+		\item{Untracked file: File that wasn't in the previous snapshot}
+	\end{itemize}
+	\note[item]{If you get a repository, you get all files in the history of the project.}
 \end{frame}
 
 \begin{frame}
@@ -261,6 +283,29 @@
 \end{frame}
 
 \begin{frame}
+	\frametitle{The Staging Area}
+	\begin{itemize}
+		\item{Intermediate area between working copy and repository}
+		\item{Format and personally review work before committing}
+		\item{Helps you to craft high-quality commits}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.3]{stagingarea.png}
+	\end{figure}
+	\begin{tcolorbox}[colback=green!5,colframe=green!40!black,title=Pro Tip] "git add -p" is almost always better than "git add"
+	\end{tcolorbox}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Development Cycle}
+	\begin{itemize}
+		\item{1. Modify files in working tree}
+		\item{2. Stage some of the modified files}
+		\item{3. Do a commit, saving the contents of the staging area into a new snapshot}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
 	\frametitle{The Three States}
 	\begin{itemize}
 		\item{The .git directory is where Git stores the snapshots}
@@ -276,22 +321,13 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Development Cycle}
-	\begin{itemize}
-		\item{1. Modify files in working tree}
-		\item{2. Stage some of the modified files}
-		\item{3. Do a commit, saving the contents of the staging area into a new snapshot}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}
 	\frametitle{First Time Configuration}
 	\begin{itemize}
-		\item{Configuration in git is done with the \textbf{git config} command}
-		\item{This command allows you to get and set configuration variables}
-		\item{These variables can be stored in three different places}
+		\item{Done with the \textbf{git config} command}
+		\item{Allows you to get and set configuration variables}
+		\item{These can be stored in three different places}
 		\item{\textit{/etc/gitconfig} file: System-wide values, use \texttt{-{}-}system switch}
-		\item{\textasciitilde{}\textit{/.gitconfig} or \textasciitilde{}\textit{/.config/git/config} file: This user only, use \texttt{-{}-}global switch}
+		\item{\textasciitilde{}\textit{/.gitconfig} or \textasciitilde{}\textit{/.config/git/config} file: Per-user, use \texttt{-{}-}global switch}
 		\item{\textit{.git/config} file: This repository only, no switch required (default option)}
 	\end{itemize}
 \end{frame}
@@ -300,41 +336,26 @@
 	\frametitle{First Time Configuration}
 	\begin{itemize}
 		\item{\textbf{git config \texttt{-{}-}global user.name "Sam Caulfield"}}
-		\item{\textbf{git config user.email "sam.caulfield@movidius.com"}}
+		\item{\textbf{git config user.email "sam@samcaulfield.com"}}
 		\item{\textbf{git config \texttt{-{}-}system core.editor "vim"}}
-		\item{Precedence: Per Repository \textgreater{} Per User \textgreater{} System}
-		\item{Show configuration settings with \textbf{git config \texttt{-{}-}list}}
-		\item{Show just one configuration option with \textbf{git config user.name}}
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Getting help}
+	\frametitle{First Time Configuration}
 	\begin{itemize}
-		\item{\textbf{git help \textless{}verb\textgreater{}}}
-		\item{\textbf{git \textless{}verb\textgreater{} \texttt{-{}-}help}}
-		\item{\textbf{man git-\textless{}verb\textgreater{}}}
-		\item{https://git-scm.com/book/en/v2/}
+		\item{Precedence: Per Repository \textgreater{} Per User \textgreater{} System}
+		\item{Show configuration settings with \textbf{git config \texttt{-{}-}list}}
+		\item{Show just one configuration option with \textbf{git config user.name}}
 	\end{itemize}
+
 \end{frame}
 
 % Section 3: Git Basics
 
 \begin{frame}
-	\frametitle{Getting a Git Repository}
-	\begin{itemize}
-		\item{Two main ways: create one or copy one}
-		\item{To create one: \textbf{git init} or \textbf{git init MyRepo}}
-		\item{To copy one: \textbf{git clone https://github.com/libgit2/libgit2}}
-	\end{itemize}
-
-	\note[item]{This is just another quick note, most will know this}
-\end{frame}
-
-\begin{frame}
 	\frametitle{Recording Changes to the Repository}
 	\begin{itemize}
-		\item{Need to make changes and commit snapshots}
 		\item{Files in the working directory are either tracked or untracked}
 		\item{Tracked: Present in the previous snapshot}
 		\item{Untracked: Not present in the previous snapshot or in the staging area}
@@ -416,6 +437,9 @@
 		\item{\textbf{echo *.o \textgreater{} .gitignore}}
 		\item{Can perform simple pattern matching: doc/**/*.pdf}
 	\end{itemize}
+
+	\begin{tcolorbox}[colback=green!5,colframe=green!40!black,title=Pro Tip]git config --global core.excludesfile \textasciitilde/gitignore-global.txt
+	\end{tcolorbox}
 \end{frame}
 
 \begin{frame}
@@ -440,6 +464,9 @@
 	\begin{figure}
 		\includegraphics[scale=0.62]{Viewing_Staged_and_Unstaged_Changes-1.png}
 	\end{figure}
+
+	\begin{tcolorbox}[colback=green!5,colframe=green!40!black,title=Pro Tip]git config diff.tool meld
+	\end{tcolorbox}
 \end{frame}
 
 \begin{frame}
@@ -453,6 +480,8 @@
 	\begin{figure}
 		\includegraphics[scale=0.62]{Committing_Your_Changes-0.png}
 	\end{figure}
+
+	\note[item]{Briefly discuss commit formatting guidelines}
 \end{frame}
 
 \begin{frame}
@@ -493,6 +522,20 @@
 \end{frame}
 
 \begin{frame}
+	\frametitle{Git has built-in integrity checking}
+	\begin{itemize}
+		\item{Everything stored in Git is check-summed}
+		\item{Changing something changes the checksum and the history}
+		\item{Git is able to detect file corruption or modification}
+		\item{SHA-1 hash (40-char hex string)}
+		\item{24b9da6552252987aa493b52f8696cd6d3b00373}
+	\end{itemize}
+
+	\note[item]{You frequently refer to objects in Git directly by their hash}
+	\note[item]{Commits are identified by their hash}
+\end{frame}
+
+\begin{frame}
 	\frametitle{Viewing the Commit History}
 	\begin{itemize}
 		\item{Can control the output of \textbf{git log}}
@@ -522,6 +565,20 @@
 		\item{Filter by author: \textbf{git log \texttt{-{}-}author}}
 		\item{Filter by commit message content: \textbf{git log \texttt{-{}-}grep}}
 	\end{itemize}
+
+	\begin{tcolorbox}[colback=green!5,colframe=green!40!black,title=Pro Tip]git config alias.vis log \texttt{-{}-}all \texttt{-{}-}oneline \texttt{-{}-}graph \texttt{-{}-}decorate
+	\end{tcolorbox}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Viewing the Commit History}
+	\begin{itemize}
+		\item{git shortlog \texttt{-{}-}since="1 week ago"}
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.6]{shortlog.png}
+	\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -850,7 +907,7 @@
 	\frametitle{Merging Branches}
 	\begin{itemize}
 		\item{Git creates a new snapshot for this merge}
-		\item{A new commit is create that points to it}
+		\item{A new commit is created that points to it}
 		\item{This is often called a "merge commit"}
 		\item{This merge commit has two parents}
 	\end{itemize}
@@ -919,7 +976,7 @@
 	\frametitle{Rebasing}
 	\begin{itemize}
 		\item{Rebasing is another way of integrating changes from one branch into another}
-		\item{In some situations it's better than merging, in some it's worse, and in some you shouldn't do it at all}
+		\item{In some situations it's better than merging}
 	\end{itemize}
 \end{frame}
 
@@ -989,13 +1046,34 @@
 
 % TODO
 \begin{frame}
-	\frametitle{Cherry-picking}
+	\frametitle{Cherrypicking}
 	\begin{itemize}
-		\item{}
+		\item{In some situations, we can't merge or rebase}
+		\item{We might want just one commit from another branch}
+		\item{git cherry-pick \textlangle{}commit ID\textrangle{}}
 	\end{itemize}
-	\begin{figure}
-		\includegraphics[scale=0.4]{}
-	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Tips and Tricks}
+	\begin{itemize}
+		\item{git clone -b \textlangle{}branch name\textrangle{} \texttt{-{}-}single-branch \textlangle{}repo path\textrangle{}}
+		\item{git push \texttt{-{}-}force-with-lease}
+		\item{git cherry -v master}
+		\item{git branch \texttt{-{}-}merged}
+		\item{git clean -fd}
+		\item{git pull \texttt{-{}-}rebase \texttt{-{}-}autostash}
+		\item{git commit \texttt{-{}-}fixup \textlangle{}commit\textrangle{} plus git rebase -i \texttt{-{}-}autosquash}
+	\end{itemize}
+	\note[item]{reflog is completely local, stores history of what HEAD pointed to}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Git Revert}
+	\begin{itemize}
+		\item{Simply creates a new commit that is the reverse of an old commit}
+		\item{git revert HEAD}
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -1007,22 +1085,6 @@
 		\item{Can be written in any language, compiled or interpreted}
 	\end{itemize}
 	\note[item]{Scripts commonly written in shell scripting languages, Python, Perl, Ruby}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Tips and Tricks}
-	\begin{itemize}
-		\item{git clone -b <branch name> --single-branch  <repo path>}
-		\item{git push --force-with-lease}
-		\item{git cherry -v master}
-		\item{git branch --merged}
-		\item{git clean -fd}
-		\item{git pull --rebase --autostash}
-		\item{git config --global core.excludesfile ~/projects/dotfiles/gitignore-global.txt}
-		\item{git shortlog --since="1 week ago"}
-		\item{git log -S"Hello, World!"}
-	\end{itemize}
-	\note[item]{reflog is completely local, stores history of what HEAD pointed to}
 \end{frame}
 
 \end{document}

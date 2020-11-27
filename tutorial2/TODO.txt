@@ -1,10 +1,9 @@
 notes:
- - git is not purely a collaboration tool
  - notes on using git for data science (version controlling models etc)
  - bit on submodules
- - no predefined concept of central repo
- - reflog
  - large file storage
+ - --amend  --no-edit
+ - `git commit --fixup :/search`
 
 Generate slides:
  - One with notes included, one without

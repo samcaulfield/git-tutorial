@@ -16,9 +16,10 @@ General points:
 Opening questions to ask to gauge the level of the audience (hands up):
  - Who has used Git before? (Git Intro)
  - Who has merged a branch before? (Basic Branches)
+ - Who has done an interactive rebase before? (Advanced Branches)
+
  - Who knows what the staging area is? (Basic Staging Area)
  - Who knows how to unstage only staged changes to tracked files? (Intermediate Staging Area)
- - Who has done an interactive rebase before? (Advanced Branches)
  - Who has used git bisect to find the commit that introduced a bug? (Advanced Branches)
 
 1. Intro to Version Control
